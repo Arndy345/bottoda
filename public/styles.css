@@ -1,0 +1,42 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.order-box {
+	border: 2px solid black;
+	margin: 10px auto;
+	min-height: 10vh;
+	max-width: 500px;
+	padding: 10px 20px;
+}
+
+.bot-section {
+	display: flex;
+	flex-direction: column;
+	align-items: end;
+}
+span {
+	margin-top: 3px;
+	background-color: black;
+	padding: 5px;
+	border-radius: 5px;
+	width: max-content;
+	color: white;
+}
+.input-section {
+	display: flex;
+}
+form {
+	margin: 5px auto;
+}
+
+input {
+	width: 100%;
+	float: left;
+	flex: 90%;
+}
+button {
+	float: right;
+	flex: 10%;
+}
