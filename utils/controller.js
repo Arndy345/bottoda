@@ -24,11 +24,9 @@ exports.currentOrders = () => {
 	return botresponse;
 };
 exports.checkoutOrder = async () => {
-	let botresponse =
-		"You have not made any order yet";
+	let botresponse = "No order to place";
 	if (currentOrder.length > 0) {
-		botresponse =
-			"You selected option 99 <br> checkout your order";
+		botresponse = "Order Placed";
 		await orderModel.create(currentOrder);
 		currentOrder = [];
 		return botresponse;
@@ -45,6 +43,23 @@ exports.cancelOrders = () => {
 		currentOrder = [];
 		return botresponse;
 	}
-	console.log(currentOrder);
+
+	return botresponse;
+};
+
+exports.orderHistory = async (sessionId) => {
+	let botresponse = "You have made no orders yet";
+	const orders = await orderModel.find({
+		sessionId,
+	});
+
+	if (orders.length > 0) {
+		botresponse = "Orders placed: <br>";
+		for (let i = 0; i < orders.length; i++) {
+			botresponse += `<p>${orders[i].order}</p> <br> <span>${orders[i].createdAt}</span>`;
+		}
+
+		return botresponse;
+	}
 	return botresponse;
 };

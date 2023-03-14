@@ -11,6 +11,7 @@ const {
 	checkoutOrder,
 	currentOrders,
 	cancelOrders,
+	orderHistory,
 } = require("./utils/controller");
 const server = http.createServer(app);
 
@@ -73,38 +74,54 @@ io.on("connection", (socket) => {
 				// let botresponse = "";
 
 				if (message === "1") {
-					botresponse =
-						"You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050";
+					// botresponse =
+					// ("You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050");
+					io.to(sessionId).emit("message", {
+						sender: "bot",
+						message: `Welcome ${message}, good to have you here.<br> How may I help you today? <br>Here is my menu: <br>
+				1. Place Order <br>
+				99. Checkout Order <br>
+				98. Order History <br>
+        97. Current Order <br>
+				0. Cancel Order <br>`,
+					});
+					return;
 				} else if (message === "99") {
 					botresponse = await checkoutOrder();
+					progress = 1;
 				} else if (message === "98") {
-					botresponse =
-						"You selected option 98 <br> here is your order history";
-					//orderHistory()
+					botresponse = await orderHistory(
+						sessionId
+					);
+					progress = 1;
 				} else if (message === "97") {
 					botresponse = currentOrders();
+					progress = 1;
 				} else if (message === "0") {
 					botresponse = cancelOrders();
+					progress = 1;
 				} else {
 					//if the user enters an invalid option, we send the default message
 					botresponse =
 						"Invalid option <br> Press any of the following keys: <br> 1. Place Order <br> 2. Checkout Order <br> 3. Order History <br> 4. Cancel Order <br>";
 					//set the progess as 1 until the proper input is recieved
-					progress = 1;
+					progress = 0;
 					io.to(sessionId).emit("message", {
 						sender: "bot",
 						message: botresponse,
 					});
 					return;
 				}
-
+				console.log(progress);
 				io.to(sessionId).emit("message", {
 					sender: "bot",
 					message: botresponse,
 				});
 				//set the progress to 2 to move on to next level
 				progress = 2;
+
 				break;
+
 			case 2:
 				if (
 					message !== "1" &&
