@@ -14,6 +14,10 @@ const {
 	orderHistory,
 	placeOrder,
 } = require("./utils/controller");
+
+const {
+	emitResponder,
+} = require("./utils/helper");
 const server = http.createServer(app);
 
 //session configuration
@@ -57,7 +61,7 @@ io.on("connection", (socket) => {
 				//if the user replies, increase the progress and send the default message
 				io.to(sessionId).emit("message", {
 					sender: "bot",
-					message: `Welcome ${message}, good to have you here.<br> How may I help you today? <br>Here is my menu: <br>
+					message: `Welcome ${message}, good to have you here.<br> How may I help you today? <br>Main Menu: <br>
 				1. Place Order <br>
 				99. Checkout Order <br>
 				98. Order History <br>
@@ -70,62 +74,80 @@ io.on("connection", (socket) => {
 			case 1:
 				//the user has selected an option, so we check which option they selected
 				if (message === "10") {
-					botresponse = `Here is my menu: <br>
+					botresponse = `Main Menu: <br>
 				1. Place Order <br>
 				99. Checkout Order <br>
 				98. Order History <br>
         97. Current Order <br>
 				0. Cancel Order <br>`;
 					progress = 1;
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					break;
 				} else if (message === "1") {
 					botresponse = placeOrder();
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					progress = 2;
 					break;
 				} else if (message === "99") {
 					botresponse = await checkoutOrder();
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					progress = 1;
 				} else if (message === "98") {
 					botresponse = await orderHistory(
 						sessionId
 					);
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					progress = 1;
 				} else if (message === "97") {
 					botresponse = currentOrders();
 					progress = 1;
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 				} else if (message === "0") {
 					botresponse = cancelOrders();
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					progress = 1;
 				} else {
 					//if the user enters an invalid option, we send the default message
 					botresponse =
-						"Invalid option <br> Press any of the following keys: <br> 1. Place Order <br> 2. Checkout Order <br> 3. Order History <br> 4. Cancel Order <br>";
+						"Invalid option <br> Press any of the following keys: <br> 1. Place Order <br> 99. Checkout Order <br> 98. Order History <br> 97. Current orders <br> 0. Cancel Order <br>";
 					//set the progess as 1 until the proper input is recieved
 					progress = 1;
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					return;
 				}
 
@@ -145,28 +167,54 @@ io.on("connection", (socket) => {
 					message !== "5"
 				) {
 					let botresponse = "Invalid Input";
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					progress = 2;
 				} else {
-					let botresponse =
-						"Order added to cart<br> Press 10 to return to main menu";
-					saveOrder(message, sessionId);
-					progress = 1;
-					io.to(sessionId).emit("message", {
-						sender: "bot",
-						message: botresponse,
-					});
+					let botresponse = saveOrder(
+						message,
+						sessionId
+					);
+
+					progress = 3;
+					emitResponder(
+						"bot",
+						botresponse,
+						sessionId,
+						io
+					);
 					return;
 				}
 				botresponse = placeOrder();
-				io.to(sessionId).emit("message", {
-					sender: "bot",
-					message: botresponse,
-				});
-			// break;
+				emitResponder(
+					"bot",
+					botresponse,
+					sessionId,
+					io
+				);
+			case 3:
+				if (message === "0") {
+					emitResponder(
+						"bot",
+						"Invalid number of units",
+						sessionId,
+						io
+					);
+					progress = 3;
+					return;
+				}
+				emitResponder(
+					"bot",
+					`You made an order for ${message} units  <br> Press <b>10</b> to return to main menu or <b>99</b> to checkout orders`,
+					sessionId,
+					io
+				);
+				progress = 1;
+				return;
 		}
 	});
 });

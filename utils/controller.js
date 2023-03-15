@@ -10,25 +10,22 @@ let currentOrder = [];
 
 exports.placeOrder = () => {
 	let botresponse = "List of items available ";
-	// "You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050";
 	for (let i = 0; i < orderCart.length; i++) {
 		botresponse += `<li>${orderCart[i].name} - ${orderCart[i].price}</li>`;
 	}
-	// console.log(botresponse);
 	return botresponse;
 };
-exports.saveOrder = async (
-	message,
-	sessionId
-) => {
+exports.saveOrder = (message, sessionId) => {
+	let botresponse = "";
 	const newOrder = orderCart[message - 1];
 	const order = {
 		order: newOrder.name,
 		price: newOrder.price,
 		sessionId,
 	};
-
 	currentOrder.push(order);
+	botresponse = `${newOrder.name} was added to cart <br> Enter the number of units needed`;
+	return botresponse;
 };
 exports.currentOrders = () => {
 	let botresponse =
@@ -62,7 +59,7 @@ exports.checkoutOrder = async () => {
 exports.cancelOrders = () => {
 	let botresponse = "You have no orders yet";
 	if (currentOrder.length > 0) {
-		botresponse = "Order Canceled";
+		botresponse = "Orders Canceled";
 		currentOrder = [];
 		return botresponse;
 	}
@@ -81,7 +78,6 @@ exports.orderHistory = async (sessionId) => {
 		for (let i = 0; i < orders.length; i++) {
 			botresponse += `<p>${orders[i].order}</p> <br> <span>${orders[i].createdAt}</span>`;
 		}
-
 		return botresponse;
 	}
 	return botresponse;
