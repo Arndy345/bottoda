@@ -1,10 +1,30 @@
 const orderModel = require("../models/order.model");
+const orderCart = [
+	{ name: "Bread", price: 1250 },
+	{ name: "Milk", price: 2050 },
+	{ name: "Apples", price: 300 },
+	{ name: "Burger", price: 1450 },
+	{ name: "Pizza", price: 3050 },
+];
 let currentOrder = [];
-exports.saveOrder = async (orders, sessionId) => {
+
+exports.placeOrder = () => {
+	let botresponse =
+		"You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050";
+	// console.log(botresponse);
+	return botresponse;
+};
+exports.saveOrder = async (
+	message,
+	sessionId
+) => {
+	const newOrder = orderCart[message - 1];
 	const order = {
-		order: orders,
+		order: newOrder.name,
+		price: newOrder.price,
 		sessionId,
 	};
+
 	currentOrder.push(order);
 };
 exports.currentOrders = () => {

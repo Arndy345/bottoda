@@ -5,6 +5,7 @@ const orderSchema = new schema(
 	{
 		sessionId: String,
 		order: String,
+		price: Number,
 	},
 	{ timestamps: true }
 );
