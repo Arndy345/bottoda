@@ -3,6 +3,15 @@
 	margin: 0;
 	padding: 0;
 }
+button {
+	background-color: #127c7e;
+	color: white;
+	outline: none;
+	border: none;
+}
+button:hover {
+	background-color: #127c7e78;
+}
 .order-box {
 	border: 2px solid black;
 	margin: 10px auto;
@@ -14,16 +23,35 @@
 .bot-section {
 	display: flex;
 	flex-direction: column;
+	align-items: start;
+	width: fit-content;
+}
+.bot-section span {
+	background-color: #127c7e;
+	border-radius: 10px;
+	padding: 10px;
+	border-top-left-radius: 0px;
+}
+.user-section {
+	display: flex;
+	flex-direction: column;
 	align-items: end;
 }
+.user-section span {
+	border-radius: 10px;
+	padding: 10px;
+	border-top-right-radius: 0px;
+	background-color: rgba(70, 100, 198, 0.674);
+}
+
 span {
 	margin-top: 3px;
-	background-color: black;
 	padding: 5px;
 	border-radius: 5px;
 	width: max-content;
 	color: white;
 }
+
 .input-section {
 	display: flex;
 }
@@ -34,7 +62,8 @@ form {
 input {
 	width: 100%;
 	float: left;
-	flex: 90%;
+	flex: 80%;
+	margin-right: 10px;
 }
 button {
 	float: right;

@@ -31,9 +31,11 @@ const outputMessage = (message) => {
 
 	if (message.sender === "bot") {
 		div.classList.add("bot-section");
+		// div.classList.add("bot");
 		div.innerHTML = `<span>${message.message}</span>`;
 	} else {
 		div.classList.add("user-section");
+		// div.classList.add("user");
 		div.innerHTML = `<span>${message.message}</span>`;
 	}
 

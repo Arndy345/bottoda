@@ -17,14 +17,11 @@
 	<body>
 		<div class="order-box">
 			<section class="chat-box">
-				<section class="bot-section" id="bot">
+				<div class="bot-section" id="bot">
 					<span>Welcome to Bottoda 😃</span>
 					<span>What is your name?</span>
-				</section>
-				<section
-					class="user-section"
-					id="user"
-				></section>
+				</div>
+				<div class="user-section"></div>
 			</section>
 
 			<form class="input-section" id="input-form">
@@ -32,8 +29,9 @@
 					type="text"
 					name="chatbox"
 					id="msg"
+					placeholder="Enter message"
 				/>
-				<button type="submit">✈️</button>
+				<button type="submit">Send</button>
 			</form>
 
 			<script src="socket.io/socket.io.js"></script>
