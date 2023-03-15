@@ -9,8 +9,11 @@ const orderCart = [
 let currentOrder = [];
 
 exports.placeOrder = () => {
-	let botresponse =
-		"You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050";
+	let botresponse = "List of items available ";
+	// "You selected option 1 <br> here is the menu <br> 1: Bread - #750 <br> 2: Milk - #1250 <br> 3: Milo - #1050";
+	for (let i = 0; i < orderCart.length; i++) {
+		botresponse += `<li>${orderCart[i].name} - ${orderCart[i].price}</li>`;
+	}
 	// console.log(botresponse);
 	return botresponse;
 };

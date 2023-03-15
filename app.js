@@ -134,8 +134,6 @@ io.on("connection", (socket) => {
 					message:
 						"Press 10 to return to main menu",
 				});
-				//set the progress to 2 to move on to next level
-				// progress = 2;
 				break;
 
 			case 2:

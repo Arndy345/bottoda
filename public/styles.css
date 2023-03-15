@@ -29,7 +29,7 @@ button:hover {
 .bot-section span {
 	background-color: #127c7e;
 	border-radius: 10px;
-	padding: 10px;
+	/* padding: 10px; */
 	border-top-left-radius: 0px;
 }
 .user-section {
