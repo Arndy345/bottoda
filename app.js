@@ -217,10 +217,12 @@ io.on("connection", (socket) => {
 					io
 				);
 			case 3:
-				if (message === "0") {
+				const unit = Number(message);
+
+				if (unit === 0 || !unit) {
 					emitResponder(
 						"bot",
-						"Invalid number of units",
+						"Invalid number of units <br> Please enter valid amount",
 						sessionId,
 						io
 					);

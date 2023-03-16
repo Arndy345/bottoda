@@ -53,7 +53,7 @@ exports.currentOrders = () => {
 			i < currentOrder.length;
 			i++
 		) {
-			botresponse += `<p>${noOfUnits} units of ${currentOrder[i].order} at a total cost of - ${currentOrder[i].totalCost}</p> `;
+			botresponse += `<p>${currentOrder[i].noOfUnits} units of ${currentOrder[i].order} at a total cost of - ${currentOrder[i].totalCost}</p> `;
 		}
 		return botresponse;
 	}
