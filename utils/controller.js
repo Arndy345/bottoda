@@ -63,7 +63,7 @@ exports.currentOrders = () => {
 exports.checkoutOrder = async () => {
 	let botresponse = "No order to place";
 	if (currentOrder.length > 0) {
-		botresponse = "Order Placed";
+		botresponse = "Order Checked Out";
 		await orderModel.create(currentOrder);
 		currentOrder = [];
 		return botresponse;

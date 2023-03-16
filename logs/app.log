@@ -399,3 +399,18 @@
 {"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":15.24,"status":304,"timestamp":"Thu Mar 16 2023 21:02:23 GMT+0100 (West Africa Standard Time)","url":"/"}
 {"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":2.891,"status":304,"timestamp":"Thu Mar 16 2023 21:02:23 GMT+0100 (West Africa Standard Time)","url":"/styles.css"}
 {"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":1.004,"status":304,"timestamp":"Thu Mar 16 2023 21:02:23 GMT+0100 (West Africa Standard Time)","url":"/main.js"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":12.91,"status":304,"timestamp":"Thu Mar 16 2023 21:13:57 GMT+0100 (West Africa Standard Time)","url":"/"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":3.566,"status":304,"timestamp":"Thu Mar 16 2023 21:13:57 GMT+0100 (West Africa Standard Time)","url":"/styles.css"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":1.916,"status":304,"timestamp":"Thu Mar 16 2023 21:13:57 GMT+0100 (West Africa Standard Time)","url":"/main.js"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":26.257,"status":304,"timestamp":"Thu Mar 16 2023 21:14:27 GMT+0100 (West Africa Standard Time)","url":"/"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":2.514,"status":304,"timestamp":"Thu Mar 16 2023 21:14:27 GMT+0100 (West Africa Standard Time)","url":"/styles.css"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":3.309,"status":304,"timestamp":"Thu Mar 16 2023 21:14:27 GMT+0100 (West Africa Standard Time)","url":"/main.js"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}

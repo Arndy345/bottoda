@@ -216,9 +216,9 @@ io.on("connection", (socket) => {
 					sessionId,
 					io
 				);
+				return;
 			case 3:
 				const unit = Number(message);
-
 				if (unit === 0 || !unit) {
 					emitResponder(
 						"bot",
