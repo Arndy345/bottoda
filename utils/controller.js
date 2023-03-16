@@ -62,15 +62,17 @@ exports.currentOrders = () => {
 };
 exports.checkoutOrder = async () => {
 	let botresponse = "No order to place";
-	if (currentOrder.length > 0) {
-		botresponse = "Order Checked Out";
-		await orderModel.create(currentOrder);
+	try {
+		if (currentOrder.length > 0) {
+			botresponse = "Order Checked Out";
+			await orderModel.create(currentOrder);
+			currentOrder = [];
+			return botresponse;
+		}
+
 		currentOrder = [];
 		return botresponse;
-	}
-
-	currentOrder = [];
-	return botresponse;
+	} catch (error) {}
 };
 
 exports.cancelOrders = () => {
@@ -86,16 +88,18 @@ exports.cancelOrders = () => {
 
 exports.orderHistory = async (sessionId) => {
 	let botresponse = "You have made no orders yet";
-	const orders = await orderModel.find({
-		sessionId,
-	});
+	try {
+		const orders = await orderModel.find({
+			sessionId,
+		});
 
-	if (orders.length > 0) {
-		botresponse = "Orders placed: <br>";
-		for (let i = 0; i < orders.length; i++) {
-			botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li> <br> <span>${orders[i].createdAt}</span>`;
+		if (orders.length > 0) {
+			botresponse = "Orders placed: <br>";
+			for (let i = 0; i < orders.length; i++) {
+				botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li> <br> <span>${orders[i].createdAt}</span>`;
+			}
+			return botresponse;
 		}
 		return botresponse;
-	}
-	return botresponse;
+	} catch (error) {}
 };

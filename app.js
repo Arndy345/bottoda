@@ -120,13 +120,14 @@ io.on("connection", (socket) => {
 					progress = 2;
 					break;
 				} else if (message === "99") {
-					botresponse = await checkoutOrder();
 					emitResponder(
 						"bot",
-						botresponse,
+						"Order Checked Out",
 						sessionId,
 						io
 					);
+
+					botresponse = await checkoutOrder();
 					progress = 1;
 				} else if (message === "98") {
 					botresponse = await orderHistory(
@@ -229,7 +230,6 @@ io.on("connection", (socket) => {
 					progress = 3;
 					return;
 				}
-				// console.log(progress);
 				botresponse = saveOrder(
 					message,
 					sessionId,
