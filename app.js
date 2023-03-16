@@ -4,6 +4,12 @@ const http = require("http");
 const socket = require("socket.io");
 const session = require("express-session");
 const connect = require("./connectDb");
+const rateLimit = require("express-rate-limit");
+const helmet = require("helmet");
+const logger = require("./logger/logger");
+const httpLogger = require("./logger/httpLogger");
+const cors = require("cors");
+const morgan = require("morgan");
 const port = 3000 || process.env.port;
 const app = express();
 const {
@@ -13,12 +19,22 @@ const {
 	cancelOrders,
 	orderHistory,
 	placeOrder,
+	noOfUnits,
 } = require("./utils/controller");
 
 const {
 	emitResponder,
+	defaultBotResponse,
 } = require("./utils/helper");
 const server = http.createServer(app);
+// Defaults to in-memory store.
+// You can use redis or any other store.
+const limiter = rateLimit({
+	windowMs: 0.5 * 60 * 1000, // 15 minutes
+	max: 4, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 //session configuration
 const sessionMiddleware = session({
@@ -31,6 +47,16 @@ const sessionMiddleware = session({
 		maxAge: 1000 * 60 * 60 * 24 * 7,
 	},
 });
+
+app.use(cors());
+//add secuirty
+app.use(helmet());
+app.use(httpLogger);
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter);
+
+app.use(morgan("dev"));
 
 app.use(
 	express.static(path.join(__dirname, "public"))
@@ -74,12 +100,7 @@ io.on("connection", (socket) => {
 			case 1:
 				//the user has selected an option, so we check which option they selected
 				if (message === "10") {
-					botresponse = `Main Menu: <br>
-				1. Place Order <br>
-				99. Checkout Order <br>
-				98. Order History <br>
-        97. Current Order <br>
-				0. Cancel Order <br>`;
+					botresponse = defaultBotResponse;
 					progress = 1;
 					emitResponder(
 						"bot",
@@ -153,8 +174,7 @@ io.on("connection", (socket) => {
 
 				io.to(sessionId).emit("message", {
 					sender: "bot",
-					message:
-						"Press 10 to return to main menu",
+					message: defaultBotResponse,
 				});
 				break;
 
@@ -207,12 +227,22 @@ io.on("connection", (socket) => {
 					progress = 3;
 					return;
 				}
+				// console.log(progress);
+				botresponse = saveOrder(
+					message,
+					sessionId,
+					progress
+				);
 				emitResponder(
 					"bot",
-					`You made an order for ${message} units  <br> Press <b>10</b> to return to main menu or <b>99</b> to checkout orders`,
+					botresponse,
 					sessionId,
 					io
 				);
+				io.to(sessionId).emit("message", {
+					sender: "bot",
+					message: defaultBotResponse,
+				});
 				progress = 1;
 				return;
 		}
@@ -221,5 +251,5 @@ io.on("connection", (socket) => {
 
 server.listen(port, async () => {
 	await connect();
-	console.log("listening on port", port);
+	logger.info("listening on port", port);
 });

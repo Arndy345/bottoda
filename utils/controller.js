@@ -7,6 +7,8 @@ const orderCart = [
 	{ name: "Pizza", price: 3050 },
 ];
 let currentOrder = [];
+let order = {};
+let noOfUnits = "";
 
 exports.placeOrder = () => {
 	let botresponse = "List of items available ";
@@ -15,28 +17,43 @@ exports.placeOrder = () => {
 	}
 	return botresponse;
 };
-exports.saveOrder = (message, sessionId) => {
+exports.saveOrder = (
+	message,
+	sessionId,
+	progress
+) => {
 	let botresponse = "";
+
+	if (progress === 3) {
+		noOfUnits = Number(message);
+		order.noOfUnits = noOfUnits;
+		botresponse = `You made an order for ${message} units of ${order.order}`;
+		order.totalCost = order.price * noOfUnits;
+
+		currentOrder.push(order);
+		return botresponse;
+	}
 	const newOrder = orderCart[message - 1];
-	const order = {
+	order = {
 		order: newOrder.name,
 		price: newOrder.price,
 		sessionId,
 	};
-	currentOrder.push(order);
 	botresponse = `${newOrder.name} was added to cart <br> Enter the number of units needed`;
+
 	return botresponse;
 };
+
 exports.currentOrders = () => {
 	let botresponse =
-		"You selected option 97 <br> here is current your order ";
+		"Here are current your orders ";
 	if (currentOrder.length > 0) {
 		for (
 			let i = 0;
 			i < currentOrder.length;
 			i++
 		) {
-			botresponse += `<p>${currentOrder[i].order}</p> `;
+			botresponse += `<p>${noOfUnits} units of ${currentOrder[i].order} at a total cost of - ${currentOrder[i].totalCost}</p> `;
 		}
 		return botresponse;
 	}
@@ -76,7 +93,7 @@ exports.orderHistory = async (sessionId) => {
 	if (orders.length > 0) {
 		botresponse = "Orders placed: <br>";
 		for (let i = 0; i < orders.length; i++) {
-			botresponse += `<p>${orders[i].order}</p> <br> <span>${orders[i].createdAt}</span>`;
+			botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li> <br> <span>${orders[i].createdAt}</span>`;
 		}
 		return botresponse;
 	}
