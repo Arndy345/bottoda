@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
 				//if the user replies, increase the progress and send the default message
 				io.to(sessionId).emit("message", {
 					sender: "bot",
-					message: `Welcome ${message}, good to have you here.<br> How may I help you today? <br>Main Menu: <br>
+					message: `Welcome ${message}, good to have you here.<br> How may I help you today? <br>Here's a Menu of what you can do: <br>
 				1. Place Order <br>
 				99. Checkout Order <br>
 				98. Order History <br>

@@ -687,3 +687,10 @@
 {"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":0.827,"status":304,"timestamp":"Fri Mar 17 2023 21:23:53 GMT+0100 (West Africa Standard Time)","url":"/?chatbox=Nonso"}
 {"contentLength":"1253","level":"info","message":"HTTP Access Log","method":"GET","responseTime":2.183,"status":200,"timestamp":"Fri Mar 17 2023 21:23:53 GMT+0100 (West Africa Standard Time)","url":"/styles.css"}
 {"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":1.042,"status":304,"timestamp":"Fri Mar 17 2023 21:23:53 GMT+0100 (West Africa Standard Time)","url":"/main.js"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"level":"info","message":"listening on port"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":2.518,"status":304,"timestamp":"Fri Mar 17 2023 21:31:52 GMT+0100 (West Africa Standard Time)","url":"/?chatbox=Nonso"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":3.12,"status":304,"timestamp":"Fri Mar 17 2023 21:31:52 GMT+0100 (West Africa Standard Time)","url":"/styles.css"}
+{"contentLength":"-","level":"info","message":"HTTP Access Log","method":"GET","responseTime":2.665,"status":304,"timestamp":"Fri Mar 17 2023 21:31:52 GMT+0100 (West Africa Standard Time)","url":"/main.js"}
