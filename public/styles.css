@@ -19,6 +19,11 @@ button:hover {
 	max-width: 500px;
 	padding: 10px 20px;
 }
+@media (max-width: 576px) {
+	.order-box {
+		width: 100vw;
+	}
+}
 
 .bot-section {
 	display: flex;

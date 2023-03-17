@@ -21,7 +21,7 @@
 
 ---
 
-- [Chat Bot](https://bottoda.onrender.com//)
+- [Chat Bot](https://bottoda.onrender.com/)
 
 ## Built With:
 
@@ -51,7 +51,7 @@ npm run start:dev
 
 ## Open the application in your browser:
 
-    - `http://localhost:3000`
+`http://localhost:3000`
 
 ### Usage
 
