@@ -13,7 +13,9 @@ let noOfUnits = "";
 exports.placeOrder = () => {
 	let botresponse = "List of items available ";
 	for (let i = 0; i < orderCart.length; i++) {
-		botresponse += `<li>${orderCart[i].name} - ${orderCart[i].price}</li>`;
+		botresponse += `<p>${i + 1}. ${
+			orderCart[i].name
+		} - ${orderCart[i].price}</p>`;
 	}
 	return botresponse;
 };

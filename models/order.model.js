@@ -12,16 +12,7 @@ const orderSchema = new schema(
 	{ timestamps: true }
 );
 
-// orderSchema.pre("save", async (next) => {
-// 	let order = this;
 
-// 	await order.totalCost = order.unitPrice.order.
-// 	await order.reduce((prev, curr) => {
-// 		prev += curr.price * curr.quantity;
-// 		order.total_price = prev;
-// 		next();
-// 	}, 0);
-// });
 module.exports = mongoose.model(
 	"Order",
 	orderSchema
