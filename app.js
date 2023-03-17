@@ -174,10 +174,10 @@ io.on("connection", (socket) => {
 					return;
 				}
 
-				io.to(sessionId).emit("message", {
-					sender: "bot",
-					message: defaultBotResponse,
-				});
+				// io.to(sessionId).emit("message", {
+				// 	sender: "bot",
+				// 	message: defaultBotResponse,
+				// });
 				break;
 
 			case 2:
@@ -210,16 +210,8 @@ io.on("connection", (socket) => {
 						io
 					);
 					progress = progress;
-					console.log(progress);
 					break;
 				}
-				botresponse = placeOrder();
-				emitResponder(
-					"bot",
-					botresponse,
-					sessionId,
-					io
-				);
 
 			case 3:
 				const unit = Number(message);
@@ -244,10 +236,6 @@ io.on("connection", (socket) => {
 					sessionId,
 					io
 				);
-				io.to(sessionId).emit("message", {
-					sender: "bot",
-					message: defaultBotResponse,
-				});
 				progress = 1;
 				return;
 		}

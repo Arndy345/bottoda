@@ -77,6 +77,7 @@ To use the restaurant chatbot, follow these steps:
 - If you select "1" to order food, the chatbot will present you with a menu of items with corresponding numbers and prices. You can enter the number of the item that correspond with the item you want to order.
 - After selecting the item the chatbot will ask you for the number of units you want for the item
 - The chatbot takes note of your response and replies with the item ordered and number of units and also sums the total cost
+- If you try to place an order for an item that is already in the cart, the bot notifies you.
 - The chatbot will ask if you want to check out your order or place a new one
 - If you select "99" to checkout your order, the chatbot will let you know that your order has been placed and will show the main menu.
 - If you select "98" to see order history, the chatbot will show you all orders checked out.
