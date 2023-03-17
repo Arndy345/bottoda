@@ -69,3 +69,10 @@ button {
 	float: right;
 	flex: 10%;
 }
+
+.time {
+	font-size: 0.65em;
+	text-align: right;
+	color: white;
+	margin-top: 5px;
+}

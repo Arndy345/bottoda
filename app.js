@@ -158,6 +158,7 @@ io.on("connection", (socket) => {
 						io
 					);
 					progress = 1;
+					return;
 				} else {
 					//if the user enters an invalid option, we send the default message
 					botresponse =
@@ -187,14 +188,16 @@ io.on("connection", (socket) => {
 					message !== "4" &&
 					message !== "5"
 				) {
-					let botresponse = "Invalid Input";
+					let botresponse =
+						"Invalid input Press 1 to see Menu again";
 					emitResponder(
 						"bot",
 						botresponse,
 						sessionId,
 						io
 					);
-					progress = 2;
+					progress = 1;
+					return;
 				} else {
 					let botresponse = saveOrder(
 						message,

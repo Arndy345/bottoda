@@ -26,17 +26,17 @@ socket.on("message", (message) => {
 	chatBox.scrollTop = chatBox.scrollHeight;
 });
 
+const timestamp = new Date().toLocaleTimeString(); // create timestamp
+
 const outputMessage = (message) => {
 	const div = document.createElement("div");
 
 	if (message.sender === "bot") {
 		div.classList.add("bot-section");
-		// div.classList.add("bot");
-		div.innerHTML = `<span>${message.message}</span>`;
+		div.innerHTML = `<span>${message.message}<p class="time">${timestamp}</p></span>`;
 	} else {
 		div.classList.add("user-section");
-		// div.classList.add("user");
-		div.innerHTML = `<span>${message.message}</span>`;
+		div.innerHTML = `<span>${message.message}<p class="time">${timestamp}</p></span>`;
 	}
 
 	document

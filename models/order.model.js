@@ -9,9 +9,12 @@ const orderSchema = new schema(
 		noOfUnits: Number,
 		totalCost: Number,
 	},
-	{ timestamps: true }
+	{
+		timestamps: {
+			currentTime: () => Math.floor(Date.now()),
+		},
+	}
 );
-
 
 module.exports = mongoose.model(
 	"Order",

@@ -78,9 +78,11 @@ exports.checkoutOrder = async () => {
 };
 
 exports.cancelOrders = () => {
-	let botresponse = "You have no orders yet";
+	let botresponse =
+		"You have no orders yet <br>1. Place an order";
 	if (currentOrder.length > 0) {
-		botresponse = "Orders Canceled";
+		botresponse =
+			"Orders canceled <br>1. Place an order";
 		currentOrder = [];
 		return botresponse;
 	}
@@ -89,7 +91,8 @@ exports.cancelOrders = () => {
 };
 
 exports.orderHistory = async (sessionId) => {
-	let botresponse = "You have made no orders yet";
+	let botresponse =
+		"You have made no orders yet <br>1. To place an order";
 	try {
 		const orders = await orderModel.find({
 			sessionId,
@@ -98,7 +101,7 @@ exports.orderHistory = async (sessionId) => {
 		if (orders.length > 0) {
 			botresponse = "Orders placed: <br>";
 			for (let i = 0; i < orders.length; i++) {
-				botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li> <br> <span>${orders[i].createdAt}</span>`;
+				botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li>  <p>${orders[i].createdAt}</p>`;
 			}
 			return botresponse;
 		}
