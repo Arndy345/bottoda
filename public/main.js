@@ -4,6 +4,8 @@ const userChat = document.getElementById("user");
 const botChat = document.getElementById("bot");
 const chatBox =
 	document.querySelector(".chat-box");
+const orderBox =
+	document.querySelector(".order-box");
 const socket = io();
 
 chatForm.addEventListener("submit", (e) => {
@@ -23,7 +25,6 @@ chatForm.addEventListener("submit", (e) => {
 //LISTEN FOR MESSAGES FROM THE SERVER
 socket.on("message", (message) => {
 	outputMessage(message);
-	chatBox.scrollTop = chatBox.scrollHeight;
 });
 
 const timestamp = new Date().toLocaleTimeString(); // create timestamp
@@ -42,4 +43,5 @@ const outputMessage = (message) => {
 	document
 		.querySelector(".chat-box")
 		.appendChild(div);
+	chatBox.scrollTop = chatBox.scrollHeight;
 };

@@ -3,6 +3,9 @@
 	margin: 0;
 	padding: 0;
 }
+header {
+	text-align: center;
+}
 button {
 	background-color: #127c7e;
 	color: white;
@@ -15,18 +18,26 @@ button:hover {
 .order-box {
 	border: 2px solid black;
 	margin: 10px auto;
-	min-height: 10vh;
+	min-height: 40vh;
+	max-height: 100vh;
+	overflow-y: auto;
 	max-width: 500px;
 	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
 }
 @media (max-width: 576px) {
 	.order-box {
-		width: 100vw;
+		width: 80vw;
 	}
 }
-
+.chat-box {
+	flex-grow: 1;
+	border-bottom: 1px solid black;
+}
 .bot-section {
 	display: flex;
+	padding: 5px;
 	flex-direction: column;
 	align-items: start;
 	width: fit-content;
@@ -34,7 +45,6 @@ button:hover {
 .bot-section span {
 	background-color: #127c7e;
 	border-radius: 10px;
-	/* padding: 10px; */
 	border-top-left-radius: 0px;
 }
 .user-section {
@@ -61,7 +71,7 @@ span {
 	display: flex;
 }
 form {
-	margin: 5px auto;
+	margin: 10px 0;
 }
 
 input {
@@ -69,10 +79,15 @@ input {
 	float: left;
 	flex: 80%;
 	margin-right: 10px;
+	padding: 10px;
+	border-radius: 10px;
+	outline: none;
 }
 button {
 	float: right;
 	flex: 10%;
+	padding: 10px;
+	border-radius: 10px;
 }
 
 .time {
