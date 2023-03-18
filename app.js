@@ -199,19 +199,19 @@ io.on("connection", (socket) => {
 					progress = 1;
 					return;
 				} else {
-					let botresponse = saveOrder(
+					[botresponse, progress] = saveOrder(
 						message,
 						sessionId
 					);
-
-					progress = 3;
 					emitResponder(
 						"bot",
 						botresponse,
 						sessionId,
 						io
 					);
-					return;
+					progress = progress;
+					console.log(progress);
+					break;
 				}
 				botresponse = placeOrder();
 				emitResponder(
@@ -220,7 +220,7 @@ io.on("connection", (socket) => {
 					sessionId,
 					io
 				);
-				return;
+
 			case 3:
 				const unit = Number(message);
 				if (unit === 0 || !unit) {
@@ -233,7 +233,7 @@ io.on("connection", (socket) => {
 					progress = 3;
 					return;
 				}
-				botresponse = saveOrder(
+				[botresponse, progress] = saveOrder(
 					message,
 					sessionId,
 					progress

@@ -25,7 +25,6 @@ exports.saveOrder = (
 	progress
 ) => {
 	let botresponse = "";
-
 	if (progress === 3) {
 		noOfUnits = Number(message);
 		order.noOfUnits = noOfUnits;
@@ -33,17 +32,56 @@ exports.saveOrder = (
 		order.totalCost = order.price * noOfUnits;
 
 		currentOrder.push(order);
-		return botresponse;
+		progress = 1;
+		return [botresponse, progress];
 	}
+
 	const newOrder = orderCart[message - 1];
+	if (currentOrder.length > 0) {
+		for (
+			let i = 0;
+			i < currentOrder.length;
+			i++
+		) {
+			if (
+				currentOrder[i].order === newOrder.name
+			) {
+				botresponse = `You already made an order for ${newOrder.name}, please make another order <br>`;
+				for (
+					let i = 0;
+					i < orderCart.length;
+					i++
+				) {
+					botresponse += `<p>${i + 1}. ${
+						orderCart[i].name
+					} - ${orderCart[i].price}</p>`;
+				}
+				progress = 2;
+				return [botresponse, progress];
+			} else {
+				order = {
+					order: newOrder.name,
+					price: newOrder.price,
+					sessionId,
+				};
+				botresponse = `${newOrder.name} was added to cart <br> Enter the number of units needed`;
+
+				progress = 3;
+				return [botresponse, progress];
+			}
+		}
+		progress = 2;
+		return [botresponse, progress];
+	}
+
 	order = {
 		order: newOrder.name,
 		price: newOrder.price,
 		sessionId,
 	};
 	botresponse = `${newOrder.name} was added to cart <br> Enter the number of units needed`;
-
-	return botresponse;
+	progress = 3;
+	return [botresponse, progress];
 };
 
 exports.currentOrders = () => {
@@ -92,7 +130,7 @@ exports.cancelOrders = () => {
 
 exports.orderHistory = async (sessionId) => {
 	let botresponse =
-		"You have made no orders yet <br>1. To place an order";
+		"You have made no orders yet <br>";
 	try {
 		const orders = await orderModel.find({
 			sessionId,
