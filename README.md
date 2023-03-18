@@ -46,7 +46,7 @@ npm install
 ## Start Server:
 
 ```
-npm run start:dev
+npm run start
 ```
 
 ## Open the application in your browser:

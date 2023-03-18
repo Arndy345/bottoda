@@ -173,13 +173,7 @@ io.on("connection", (socket) => {
 					);
 					return;
 				}
-
-				// io.to(sessionId).emit("message", {
-				// 	sender: "bot",
-				// 	message: defaultBotResponse,
-				// });
 				break;
-
 			case 2:
 				if (
 					message !== "1" &&

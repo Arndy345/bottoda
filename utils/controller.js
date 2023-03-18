@@ -130,8 +130,10 @@ exports.orderHistory = async (sessionId) => {
 		if (orders.length > 0) {
 			botresponse = "Orders placed: <br>";
 			for (let i = 0; i < orders.length; i++) {
-				botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li>  <p>${orders[i].createdAt}</p> <br> Press 10 to return to main menu`;
+				botresponse += `<li> ${orders[i].noOfUnits} units of ${orders[i].order} at a total cost of ${orders[i].totalCost}</li>  <p>${orders[i].createdAt}</p>`;
 			}
+			botresponse +=
+				"<br> Press 10 to return to main menu";
 			return botresponse;
 		}
 		return botresponse;
