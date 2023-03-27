@@ -31,17 +31,30 @@ const timestamp = new Date().toLocaleTimeString(); // create timestamp
 
 const outputMessage = (message) => {
 	const div = document.createElement("div");
+	const img = document.createElement("img");
+	const span = document.createElement("span");
 
 	if (message.sender === "bot") {
 		div.classList.add("bot-section");
-		div.innerHTML = `<span>${message.message}<p class="time">${timestamp}</p></span>`;
+
+		span.innerHTML = `${message.message}<p class="time">${timestamp}</p>`;
+		img.src = "header.jpg";
+		div.appendChild(img);
+		div.appendChild(span);
+		document
+			.querySelector(".chat-box")
+			.appendChild(div);
 	} else {
 		div.classList.add("user-section");
 		div.innerHTML = `<span>${message.message}<p class="time">${timestamp}</p></span>`;
+		document
+			.querySelector(".chat-box")
+			.appendChild(div);
 	}
 
-	document
-		.querySelector(".chat-box")
-		.appendChild(div);
-	chatBox.scrollTop = chatBox.scrollHeight;
+	// document
+	// 	.querySelector(".chat-box")
+	// 	.appendChild(div);
+	// 	.appendChild(img)
+	orderBox.scrollTop = orderBox.scrollHeight;
 };

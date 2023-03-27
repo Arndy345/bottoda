@@ -85,7 +85,7 @@ exports.currentOrders = () => {
 		return botresponse;
 	}
 	botresponse =
-		"You have not made any order yet <br> Press 1 to place an order";
+		"You have not made any order yet <br> Press 1 to place an order <br> Press 10 to return to main menu";
 	return botresponse;
 };
 exports.checkoutOrder = async () => {
@@ -121,7 +121,7 @@ exports.cancelOrders = () => {
 
 exports.orderHistory = async (sessionId) => {
 	let botresponse =
-		"You have made no orders yet <br>";
+		"You have made no orders yet <br> Press 10 to return to main menu";
 	try {
 		const orders = await orderModel.find({
 			sessionId,

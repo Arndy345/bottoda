@@ -3,18 +3,23 @@
 	margin: 0;
 	padding: 0;
 }
+
 header {
-	text-align: center;
+	padding: 5px;
+	background-color: white;
+	display: flex;
 }
-button {
-	background-color: #127c7e;
-	color: white;
-	outline: none;
-	border: none;
+img {
+	max-width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	margin: 0 5px;
 }
-button:hover {
-	background-color: #127c7e78;
+header section {
+	display: flex;
+	flex-direction: column;
 }
+
 .order-box {
 	border: 2px solid black;
 	margin: 10px auto;
@@ -22,8 +27,9 @@ button:hover {
 	max-height: 100vh;
 	overflow-y: auto;
 	max-width: 500px;
-	padding: 10px 20px;
+	/* padding: 10px 0px; */
 	display: flex;
+	background-color: #127c7e;
 	flex-direction: column;
 }
 @media (max-width: 576px) {
@@ -34,18 +40,25 @@ button:hover {
 .chat-box {
 	flex-grow: 1;
 	border-bottom: 1px solid black;
+	padding: 10px;
 }
 .bot-section {
 	display: flex;
 	padding: 5px;
-	flex-direction: column;
+	/* flex-direction: ; */
 	align-items: start;
 	width: fit-content;
 }
 .bot-section span {
-	background-color: #127c7e;
+	color: black;
+	max-width: 80vw;
+	background-color: #f9ffff;
 	border-radius: 10px;
 	border-top-left-radius: 0px;
+}
+.bot-section section {
+	display: flex;
+	flex-direction: column;
 }
 .user-section {
 	display: flex;
@@ -56,19 +69,20 @@ button:hover {
 	border-radius: 10px;
 	padding: 10px;
 	border-top-right-radius: 0px;
-	background-color: rgba(70, 100, 198, 0.674);
+	color: white;
+	background-color: black;
 }
 
 span {
 	margin-top: 3px;
 	padding: 5px;
 	border-radius: 5px;
-	width: max-content;
-	color: white;
+	/* width: max-content; */
 }
 
 .input-section {
 	display: flex;
+	padding: 5px;
 }
 form {
 	margin: 10px 0;
@@ -82,17 +96,26 @@ input {
 	padding: 10px;
 	border-radius: 10px;
 	outline: none;
+	border: none;
 }
 button {
 	float: right;
 	flex: 10%;
 	padding: 10px;
 	border-radius: 10px;
+	background-color: #0e2323;
+	color: white;
+	outline: none;
+	border: none;
+}
+
+button:hover {
+	background-color: #14575878;
 }
 
 .time {
 	font-size: 0.65em;
 	text-align: right;
-	color: white;
+	/* color: white; */
 	margin-top: 5px;
 }

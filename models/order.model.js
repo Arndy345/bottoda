@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
-
+const date = new Date();
 const orderSchema = new schema(
 	{
 		sessionId: String,
@@ -10,9 +10,7 @@ const orderSchema = new schema(
 		totalCost: Number,
 	},
 	{
-		timestamps: {
-			currentTime: () => Math.floor(Date.now()),
-		},
+		timestamps: true,
 	}
 );
 
